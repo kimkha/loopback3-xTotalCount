@@ -1,6 +1,6 @@
 {
   "name": "loopback3-xtotalcount",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Add X-Total-Count header to all search requests for Loopback 3.0",
   "main": "index.js",
   "scripts": {

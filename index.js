@@ -1,7 +1,7 @@
-module.exports = function (app) {
+module.exports = function (app, options) {
   var remotes = app.remotes();
   // Set X-Total-Count for all search requests
-  remotes.after('*.find', function (ctx, next) {
+  var applyXTotal = function (ctx, next) {
     var filter;
     if (ctx.args && ctx.args.filter) {
       filter = ctx.args.filter.where;
@@ -15,5 +15,10 @@ module.exports = function (app) {
     } else {
       next();
     }
-  });
+  };
+  var pattern = options && Array.isArray(options.pattern) ? options.pattern : ['*.find'];
+
+  for (var i=pattern.length-1; i>=0; i--) {
+    remotes.after(pattern[i], applyXTotal);
+  }
 };
