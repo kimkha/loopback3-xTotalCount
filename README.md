@@ -42,6 +42,10 @@ Accepted patterns: See https://loopback.io/doc/en/lb3/Remote-hooks.html#wildcard
 
 Default value: `[ "*.find" ]`, which auto added to find method of all models.
 
+## Example
+
+Please check example here: [loopback-aor-boilerplate](https://github.com/kimkha/loopback-aor-boilerplate), you should clone it and change your model later.
+
 ## Known issues
 
 ### Cross-domain header
