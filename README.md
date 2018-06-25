@@ -1,5 +1,10 @@
 # loopback3-xTotalCount
-Add `X-Total-Count` header to all search requests for Loopback 3.0. It should be use on client that use [json-server](https://github.com/typicode/json-server), such as [admin-on-rest](https://github.com/marmelab/admin-on-rest)
+Add `X-Total-Count` header to all search requests for Loopback 3.0. It should be use on client that use [json-server](https://github.com/typicode/json-server), such as [react-admin](https://github.com/marmelab/react-admin)
+
+## Changes in this fork:
+Added compatibility with API calls involving related models. for example:
+GET /books/{id}/chapters
+Returns the correct count result
 
 ## Install
 
@@ -28,6 +33,10 @@ We recommend to use `yarn` instead of `npm`:
   "loopback3-xtotalcount": {
     "pattern": [
       "*.find"
+    ],
+    ,
+    "relationMethodNames": [
+      "prototype.__get__chapters"
     ]
   }
 ```
@@ -41,6 +50,13 @@ Method patterns that `X-Total-Count` header will be added.
 Accepted patterns: See https://loopback.io/doc/en/lb3/Remote-hooks.html#wildcards.
 
 Default value: `[ "*.find" ]`, which auto added to find method of all models.
+
+### relationMethodNames: array of String
+When querying related models "subModel", the method name is distinct.
+
+add: "prototype.__get__subModel" or "prototype.__get__subModelPluralForm" according to the type of the relation.
+No default value
+
 
 ## Example
 
