@@ -38,7 +38,6 @@ We recommend to use `yarn` instead of `npm`:
     "pattern": [
       "*.find"
     ],
-    ,
     "relationMethodNames": [
       "prototype.__get__chapters"
     ]
