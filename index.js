@@ -28,7 +28,7 @@ module.exports = function (app, options) {
   // Function has to calculate count for nested pattern
   // With __count__relatedModelName
 
-  //Apply to all models:
+
   var models = app.models();
  
   for(let model of models) {
@@ -38,23 +38,20 @@ module.exports = function (app, options) {
         //TODO check if works in all cases
        
         const relatedModel = app.models[ctx.resultType[0]];
-        //const relatedModel = app.models['form'];
         
         var filter;
         if (ctx.args && ctx.args.filter) {
           filter = ctx.args.filter.where;
         }
         relatedModel.count(filter, function(err, count) {
-          // if (ctx.res._headerSent) console.log('Header sent NOW !');
           if(err) {
-            console.log(err);
-            next();
+            throw new Error(err);
           }
           if (!ctx.res._headerSent) {
             ctx.res.set('X-Total-Count', count);
             next();
           } else {
-            console.log('Header sent !'); 
+            throw new Error('Headers already sent !'); 
           }
         });
       });

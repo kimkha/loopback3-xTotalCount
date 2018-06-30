@@ -4,7 +4,7 @@ Add `X-Total-Count` header to all search requests for Loopback 3.0. It should be
 ## Changes in this fork:
 Added compatibility with API calls involving related models. for example:
 GET /books/{id}/chapters
-Returns the correct count result
+Returns the correct count result as `X-Total-Count` header 
 
 ## Install
 
@@ -12,12 +12,16 @@ Returns the correct count result
 
 1. Add `"loopback3-xtotalcount": "latest"` to your `package.json` file.
 2. Run `npm install` OR run `npm install loopback3-xtotalcount`
-3. Set the module in your `component-config.json` (loopback server endpoint)
+3. Set the module in your `component-config.json` (loopback server endpoint) and add `prototype.__get__model-plural-form` for each related model.
+For example if you want `GET /books/{id}/chapters` to return  `X-Total-Count` in header, add the following:
 
 ```json
   "loopback3-xtotalcount": {
     "pattern": [
       "*.find"
+    ],
+    "relationMethodNames": [
+      "prototype.__get__chapters"
     ]
   }
 ```
