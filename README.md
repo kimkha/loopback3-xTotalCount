@@ -13,7 +13,7 @@ Returns the correct count result as `X-Total-Count` header
 1. Add `"loopback3-xtotalcount": "latest"` to your `package.json` file.
 2. Run `npm install` OR run `npm install loopback3-xtotalcount`
 3. Set the module in your `component-config.json` (loopback server endpoint) and add `prototype.__get__model-plural-form` for each related model.
-For example if you want `GET /books/{id}/chapters` to return  `X-Total-Count` in header, add the following:
+
 
 ```json
   "loopback3-xtotalcount": {
@@ -54,12 +54,22 @@ Accepted patterns: See https://loopback.io/doc/en/lb3/Remote-hooks.html#wildcard
 
 Default value: `[ "*.find" ]`, which auto added to find method of all models.
 
-### relationMethodNames: array of String
-When querying related models "subModel", the method name is distinct.
+### `relationMethodNames`: array of String
 
-add: "prototype.__get__subModel" or "prototype.__get__subModelPluralForm" according to the type of the relation.
-No default value
+In case of sub-model, for example if you want `GET /books/{id}/chapters` to return  `X-Total-Count` in header, please add the following:
 
+```json
+  "loopback3-xtotalcount": {
+    "pattern": [
+      "*.find"
+    ],
+    "relationMethodNames": [
+      "prototype.__get__chapters"
+    ]
+  }
+```
+
+Rule: Model name is `Chapter`, its plural is `Chapters`, so the URL should be `GET /books/{id}/chapters`, and then the method is `__get__chapters`. That's how it works.
 
 ## Example
 
