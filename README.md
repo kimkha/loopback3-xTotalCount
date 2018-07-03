@@ -20,9 +20,7 @@ Returns the correct count result as `X-Total-Count` header
     "pattern": [
       "*.find"
     ],
-    "relationMethodNames": [
-      "prototype.__get__chapters"
-    ]
+    // More options here
   }
 ```
 
@@ -38,9 +36,7 @@ We recommend to use `yarn` instead of `npm`:
     "pattern": [
       "*.find"
     ],
-    "relationMethodNames": [
-      "prototype.__get__chapters"
-    ]
+    // More options here
   }
 ```
 
