@@ -1,6 +1,8 @@
 # loopback3-xTotalCount
 Add `X-Total-Count` header to all search requests for Loopback 3.0. It should be use on client that use [json-server](https://github.com/typicode/json-server), such as [react-admin](https://github.com/marmelab/react-admin)
 
+You may look for this one [loopback-component-react-admin](https://github.com/kimkha/loopback-component-react-admin): the component on Loopback that help [react-admin](https://github.com/marmelab/react-admin) connect with Loopback API server.
+
 ## Changes in this fork:
 Added compatibility with API calls involving related models. for example:
 GET /books/{id}/chapters
